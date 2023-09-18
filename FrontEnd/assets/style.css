@@ -48,6 +48,7 @@ table {
 }
 /** end reset css**/
 body {
+	background-color: #FFFEF8;
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
@@ -198,7 +199,43 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#login {
+	display: flex;
+	flex-direction: column;
+	width: 33%;
+	margin: auto;
+	margin-top: 150px;
+	justify-content: center;
+}
+#login > * {
+	text-align: center;
+
+}
+#login h2{
+	margin-bottom: 20px;
+}
+#login form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+#login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#login label {
+	margin: 2em 0 1em 0;
+}
+#login a {
+	color: #3D3D3D; 
+}
+
 input[type="submit"]{
+	height: 36px !important;
+	font-size: 14px !important;
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -208,6 +245,15 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: white;
+	text-align: center;
+ }
 
 footer nav ul {
 	display: flex;
