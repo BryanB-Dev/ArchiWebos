@@ -59,6 +59,9 @@ header {
 	justify-content: space-between;
 	margin: 50px 0
 }
+main {
+	min-height: calc(100vh - 142.4px - 16.8px - 150px);
+}
 section {
 	margin: 50px 0
 }
@@ -247,12 +250,7 @@ input[type="submit"]{
 }
 
 footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
 	background-color: white;
-	text-align: center;
  }
 
 footer nav ul {
@@ -260,4 +258,3 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
-
