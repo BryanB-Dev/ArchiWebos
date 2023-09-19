@@ -1,3 +1,4 @@
+// Fetch Categories
 fetch('http://localhost:5678/api/works')
     .then(response => response.json())
     .then(data => {
@@ -13,7 +14,7 @@ fetch('http://localhost:5678/api/works')
             const projectCategoryID = project.categoryId;
             const projectUserID = project.userId;
 
-
+            // Portfolio Gallery
             const figure = document.createElement('figure');
             const image = document.createElement('img');
             const figcaption = document.createElement('figcaption');
@@ -28,23 +29,32 @@ fetch('http://localhost:5678/api/works')
             figure.appendChild(figcaption);
             gallery.appendChild(figure);
 
-            const diva = document.createElement('a');
-            const imaged = document.createElement('img');
-            const icon = document.createElement('i');
-            diva.id = projectID;
-            diva.style.position = "relative";
-            imaged.src = projectImageUrl;
-            imaged.alt = projectTitle;
-            icon.classList.add('fa-solid', 'fa-trash-can', 'fa-2xs', 'delete-icon');
-            diva.appendChild(imaged);
-            diva.appendChild(icon);
-            modalGallery.appendChild(diva)
+            // Modal Gallery
+            const modalGalleryDiv = document.createElement('div');
+            const modalGalleryImg = document.createElement('img');
+            const trashButton = document.createElement('a');
+            const trashIcon = document.createElement('i');
+
+            modalGalleryDiv.style.position = "relative";
+
+            trashButton.id = projectID;
+            
+            modalGalleryImg.src = projectImageUrl;
+            modalGalleryImg.alt = projectTitle;
+            
+            trashIcon.classList.add('fa-solid', 'fa-trash-can', 'fa-2xs', 'delete-icon');
+            
+            modalGalleryDiv.appendChild(modalGalleryImg);
+            trashButton.appendChild(trashIcon);
+            modalGalleryDiv.appendChild(trashButton);
+            modalGallery.appendChild(modalGalleryDiv)
         });
     })
     .catch(error => {
         console.error('Erreur lors de la récupération des données:', error);
     });
 
+// Fetch Categories
 fetch('http://localhost:5678/api/categories')
     .then(response => response.json())
     .then(data => {
@@ -79,6 +89,7 @@ fetch('http://localhost:5678/api/categories')
         console.error('Erreur lors de la récupération des données:', error);
     });
 
+// Filter
 function filterProjects(category) {
     const gallery = document.querySelector('.gallery');
     const projects = gallery.querySelectorAll('figure');
@@ -99,20 +110,21 @@ function filterProjects(category) {
 // Edit Mode
 if (localStorage.getItem("token")) {
 
-    // Edit Mode Overlay
+    // Edit Overlay
     const header = document.querySelector('header');
     header.style.marginTop = '109px';
 
-    // Edit Modal
     const editOverlay = document.querySelector('.edit-mode-overlay');
     editOverlay.style.display = "inline-flex";
 
+    // Edit Button
     const editButton = document.querySelector('.edit-button');
     editButton.style.display = "flex";
 
     const modalOverlay = document.querySelector('.modal-overlay');
     const closeModalButton = document.querySelector('.close-modal-button');
 
+    // Open/Close Modal
     editButton.addEventListener('click', function() {
       modalOverlay.style.display = 'block';
     });
