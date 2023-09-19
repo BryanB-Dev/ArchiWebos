@@ -52,7 +52,7 @@ fetch('http://localhost:5678/api/categories')
         const filterLinks = filterLinksContainer.querySelectorAll('.filter-link');
 
         filterLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
+            link.addEventListener('click', function (event) {
                 event.preventDefault();
                 filterLinks.forEach(lnk => lnk.classList.remove('active'));
                 this.classList.add('active');
@@ -65,19 +65,19 @@ fetch('http://localhost:5678/api/categories')
         console.error('Erreur lors de la récupération des données:', error);
     });
 
-    function filterProjects(category) {
-        const gallery = document.querySelector('.gallery');
-        const projects = gallery.querySelectorAll('figure');
-    
-        projects.forEach(project => {
-            const projectCategory = project.dataset.category;
+function filterProjects(category) {
+    const gallery = document.querySelector('.gallery');
+    const projects = gallery.querySelectorAll('figure');
 
-            console.log(category);
-    
-            if (category === 'all' || projectCategory === category) {
-                project.style.display = 'block';
-            } else {
-                project.style.display = 'none';
-            }
-        });
-    }
+    projects.forEach(project => {
+        const projectCategory = project.dataset.category;
+
+        console.log(category);
+
+        if (category === 'all' || projectCategory === category) {
+            project.style.display = 'block';
+        } else {
+            project.style.display = 'none';
+        }
+    });
+}
