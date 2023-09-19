@@ -37,17 +37,28 @@ fetch('http://localhost:5678/api/works')
 
             modalGalleryDiv.style.position = "relative";
 
-            trashButton.id = projectID;
+            trashButton.classList.add('delete-icon');
+            trashButton.dataset.projectId = projectID;
             
             modalGalleryImg.src = projectImageUrl;
             modalGalleryImg.alt = projectTitle;
             
-            trashIcon.classList.add('fa-solid', 'fa-trash-can', 'fa-2xs', 'delete-icon');
+            trashIcon.classList.add('fa-solid', 'fa-trash-can', 'fa-2xs');
             
             modalGalleryDiv.appendChild(modalGalleryImg);
             trashButton.appendChild(trashIcon);
             modalGalleryDiv.appendChild(trashButton);
             modalGallery.appendChild(modalGalleryDiv)
+        });
+        
+        const deleteIcons = document.querySelectorAll('.modal-gallery a.delete-icon');
+
+        deleteIcons.forEach(deleteIcon => {
+          deleteIcon.addEventListener('click', () => {
+            const projectId = deleteIcon.dataset.projectId;
+
+            deleteProject(projectId);
+          });
         });
     })
     .catch(error => {
@@ -139,3 +150,27 @@ if (localStorage.getItem("token")) {
       }
     });
 }
+
+function deleteProject(projectId) {
+    const token = localStorage.getItem("token"); 
+    const elementDeleted = document.querySelector(`.delete-icon[data-project-id="${projectId}"]`);
+    const divDeleted = elementDeleted.parentElement;
+  
+    fetch(`http://localhost:5678/api/works/${projectId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        divDeleted.style.display = "none";
+        console.log(`Le projet avec l'ID ${projectId} a été supprimé.`);
+      } else {
+        console.log(`Une erreur s'est produite lors de la suppression du projet avec l'ID ${projectId}.`);
+      }
+    })
+    .catch(error => {
+      console.log('Une erreur s\'est produite lors de la communication avec l\'API :', error);
+    });
+  }
