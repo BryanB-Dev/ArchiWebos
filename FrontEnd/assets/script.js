@@ -81,3 +81,35 @@ function filterProjects(category) {
         }
     });
 }
+
+if (localStorage.getItem("token")) {
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+
+    header.style.marginTop = '109px';
+
+    const editDiv = document.createElement('div');
+    editDiv.classList.add('edit-mode-overlay');
+
+    const editIcon = document.createElement('i');
+    editIcon.classList.add('fa-regular', 'fa-pen-to-square');
+
+    const editText = document.createElement('p');
+    editText.textContent = "Mode édition";
+
+    main.appendChild(editDiv);
+    editDiv.appendChild(editIcon);
+    editDiv.appendChild(editText);
+
+    const portfolioText = document.querySelector('.portfolio-text');
+
+    const editButton = document.createElement('a');
+    editButton.classList.add('edit-button');
+
+    const editButtonText = document.createElement('span');
+    editButtonText.textContent = "modifier";
+
+    portfolioText.appendChild(editButton);
+    editButton.appendChild(editIcon);
+    editButton.appendChild(editButtonText)
+}
