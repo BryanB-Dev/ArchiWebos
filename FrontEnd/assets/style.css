@@ -153,24 +153,10 @@ main {
 	min-height: calc(100vh - 142.4px - 16.8px - 150px);
 }
 
-.edit-mode-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 50px;
-	background-color: black;
-	color: white;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 9999;
-	font-size: 16px;
-	font-weight: 400;
-	gap: 21px;
-}
-
-a, button, li, input[type="submit"] {
+a,
+button,
+li,
+input[type="submit"] {
 	cursor: pointer;
 }
 
@@ -251,16 +237,6 @@ li:hover {
 
 .portfolio-text {
 	position: relative;
-}
-
-.edit-button {
-	display: flex;
-	gap: 10px;
-	position: absolute;
-	top: 9px;
-	left: calc(50% + 111px);
-	margin-left: 10px;
-	color: black;
 }
 
 .filter-links {
@@ -402,4 +378,122 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+.edit-mode-overlay {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	background-color: black;
+	color: white;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+	font-size: 16px;
+	font-weight: 400;
+	gap: 21px;
+}
+
+.edit-button {
+	display: none;
+	gap: 10px;
+	position: absolute;
+	top: 9px;
+	left: calc(50% + 111px);
+	margin-left: 10px;
+	color: black;
+}
+
+.modal-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.30);
+	z-index: 9999;
+}
+
+.modal-content {
+	border-radius: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 60px 105px 45px 105px;
+	text-align: center;
+}
+
+.modal-content hr {
+	height: 1px;
+	background-color: #B3B3B3;
+	border: none;
+	margin-bottom: 38px;
+}
+
+.modal-content .modal-img-button {
+	font-size: 14px;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin: 2em auto;
+	padding: 10px 49px;
+	text-align: center;
+	border-radius: 60px;
+}
+
+.close-modal-button {
+	width: 22px;
+	height: 22px;
+	position: absolute;
+	top: 26px;
+	right: 30px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-gallery-title {
+	color: #000;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.modal-gallery {
+	margin-top: 46px;
+	margin-bottom: 67px;
+	display: grid;
+	width: 420px;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 6px;
+	grid-row-gap: 26px;
+}
+
+.modal-gallery img {
+	height: 105px;
+}
+
+.delete-icon {
+	color: white;
+	background-color: black;
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	width: 17px;
+	height: 17px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 2px;
 }

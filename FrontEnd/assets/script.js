@@ -3,6 +3,8 @@ fetch('http://localhost:5678/api/works')
     .then(data => {
         const portfolioSection = document.getElementById('portfolio');
         const gallery = portfolioSection.querySelector('.gallery');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalGallery = modalOverlay.querySelector('.modal-gallery');
 
         data.forEach(project => {
             const projectID = project.id;
@@ -25,6 +27,18 @@ fetch('http://localhost:5678/api/works')
             figure.appendChild(image);
             figure.appendChild(figcaption);
             gallery.appendChild(figure);
+
+            const diva = document.createElement('a');
+            const imaged = document.createElement('img');
+            const icon = document.createElement('i');
+            diva.id = projectID;
+            diva.style.position = "relative";
+            imaged.src = projectImageUrl;
+            imaged.alt = projectTitle;
+            icon.classList.add('fa-solid', 'fa-trash-can', 'fa-2xs', 'delete-icon');
+            diva.appendChild(imaged);
+            diva.appendChild(icon);
+            modalGallery.appendChild(diva)
         });
     })
     .catch(error => {
@@ -82,34 +96,34 @@ function filterProjects(category) {
     });
 }
 
+// Edit Mode
 if (localStorage.getItem("token")) {
-    const header = document.querySelector('header');
-    const main = document.querySelector('main');
 
+    // Edit Mode Overlay
+    const header = document.querySelector('header');
     header.style.marginTop = '109px';
 
-    const editDiv = document.createElement('div');
-    editDiv.classList.add('edit-mode-overlay');
+    // Edit Modal
+    const editOverlay = document.querySelector('.edit-mode-overlay');
+    editOverlay.style.display = "inline-flex";
 
-    const editIcon = document.createElement('i');
-    editIcon.classList.add('fa-regular', 'fa-pen-to-square');
+    const editButton = document.querySelector('.edit-button');
+    editButton.style.display = "flex";
 
-    const editText = document.createElement('p');
-    editText.textContent = "Mode édition";
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const closeModalButton = document.querySelector('.close-modal-button');
 
-    main.appendChild(editDiv);
-    editDiv.appendChild(editIcon);
-    editDiv.appendChild(editText);
+    editButton.addEventListener('click', function() {
+      modalOverlay.style.display = 'block';
+    });
 
-    const portfolioText = document.querySelector('.portfolio-text');
+    closeModalButton.addEventListener('click', function() {
+      modalOverlay.style.display = 'none';
+    });
 
-    const editButton = document.createElement('a');
-    editButton.classList.add('edit-button');
-
-    const editButtonText = document.createElement('span');
-    editButtonText.textContent = "modifier";
-
-    portfolioText.appendChild(editButton);
-    editButton.appendChild(editIcon);
-    editButton.appendChild(editButtonText)
+    modalOverlay.addEventListener('click', function(event) {
+      if (event.target === modalOverlay) {
+        modalOverlay.style.display = 'none';
+      }
+    });
 }

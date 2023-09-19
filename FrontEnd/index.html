@@ -30,6 +30,23 @@
 		</nav>
 	</header>
 	<main>
+		<!-- Modal -->
+		<div class="modal-overlay">
+			<div class="modal-content">
+				<i class="close-modal-button fa-solid fa-xmark fa-lg"></i>
+				<h2 class="modal-gallery-title">Galerie photo</h2>
+				<div class="modal-gallery">
+
+				</div>
+				<hr>
+				<a class="modal-img-button">Ajoute une photo</a>
+			</div>
+		</div>
+		<div class="edit-mode-overlay">
+			<i class="fa-regular fa-pen-to-square"></i>
+			<p>Mode édition</p>
+		</div>
+		<!-- ----- -->
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
@@ -48,6 +65,12 @@
 		<section id="portfolio">
 			<div class="portfolio-text">
 				<h2>Mes Projets</h2>
+				<!-- Modal -->
+				<a class="edit-button">
+					<i class="fa-regular fa-pen-to-square"></i>
+					<span>modifier</span>
+				</a>
+				<!-- ----- -->
 			</div>
 			<div class="filter-links">
 				<a href="#" class="filter-link active" data-category="all">Tous</a>
