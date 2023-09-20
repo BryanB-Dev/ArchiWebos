@@ -35,11 +35,31 @@
 			<div class="modal-content">
 				<i class="close-modal-button fa-solid fa-xmark fa-lg"></i>
 				<h2 class="modal-gallery-title">Galerie photo</h2>
-				<div class="modal-gallery">
+				<div class="modal-gallery"></div>
+				
+				<i class="previous-modal-button fa-solid fa-arrow-left fa-lg"></i>
+				<h2 class="modal-upload-title" style="display: none;">Ajout photo</h2>
+				<form id="addImgForm" style="display: none;" method="post" name="addImgForm">
+					<div class="img-form">
+						<div class="img-upload">
+							<i class="imgIcon fa-regular fa-image"></i>
+							<div class="btn-upload">
+								<input type="file" name="img" id="">
+								+ Ajouter photo
+							</div>
+							<span class="upload-text">jpg, png : 4mo max</span>
+						</div>
+						<label for="title">Titre</label>
+						<input type="text" name="title" id="">
+						<label for="category">Catégorie</label>
+						<select name="category" id=""></select>
+						<hr>
+						<a class="modal-img-button">Upload</a>
+					</div>
+				</form>
+				<hr id="hrModalGallery">
 
-				</div>
-				<hr>
-				<a class="modal-img-button">Ajouter une photo</a>
+				<a id="nextPage" class="modal-img-button">Ajouter une photo</a>
 			</div>
 		</div>
 		<div class="edit-mode-overlay">
