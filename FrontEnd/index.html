@@ -14,17 +14,19 @@
 		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="assets/script.js" defer></script>
+	<script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
 	<header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li>login</li>
+				<li>
+					<a href="./login.html">login</a>
+				</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -33,21 +35,21 @@
 		<!-- Modal -->
 		<div class="modal-overlay">
 			<div class="modal-content">
-				<i class="close-modal-button fa-solid fa-xmark fa-lg"></i>
+				<i class="close-modal-button fa-solid fa-xmark fa-lg" aria-hidden="true"></i>
 				<h2 class="modal-gallery-title">Galerie photo</h2>
 				<div class="modal-gallery"></div>
 				
-				<i class="previous-modal-button fa-solid fa-arrow-left fa-lg"></i>
+				<i class="previous-modal-button fa-solid fa-arrow-left fa-lg" aria-hidden="true"></i>
 				<h2 class="modal-upload-title" style="display: none;">Ajout photo</h2>
 				<form id="addImgForm" style="display: none;" method="post" name="addImgForm">
 					<div class="img-form">
 						<div class="img-upload">
-							<i class="imgIcon fa-regular fa-image"></i>
+							<i class="imgIcon fa-regular fa-image" aria-hidden="true"></i>
 							<div class="btn-upload">
 								<input type="file" name="img" id="">
 								+ Ajouter photo
 							</div>
-							<span class="upload-text">jpg, png : 4mo max</span>
+							<p class="upload-text">jpg, png : 4mo max</p>
 						</div>
 						<label for="title">Titre</label>
 						<input type="text" name="title" id="">
@@ -63,7 +65,7 @@
 			</div>
 		</div>
 		<div class="edit-mode-overlay">
-			<i class="fa-regular fa-pen-to-square"></i>
+			<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
 			<p>Mode édition</p>
 		</div>
 		<!-- ----- -->
@@ -87,7 +89,7 @@
 				<h2>Mes Projets</h2>
 				<!-- Modal -->
 				<a class="edit-button">
-					<i class="fa-regular fa-pen-to-square"></i>
+					<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
 					<span>modifier</span>
 				</a>
 				<!-- ----- -->

@@ -1,4 +1,4 @@
-// Fetch Categories
+// Fetch Works
 fetch('http://localhost:5678/api/works')
 	.then(response => response.json())
 	.then(data => {
@@ -206,7 +206,7 @@ function deleteProject(projectId) {
 	})
 		.then(response => {
 			if (response.ok) {
-				divDeleted.style.display = "none";
+				divDeleted.remove();
 				console.log(`Le projet avec l'ID ${projectId} a été supprimé.`);
 			} else {
 				console.log(`Une erreur s'est produite lors de la suppression du projet avec l'ID ${projectId}.`);
@@ -214,93 +214,5 @@ function deleteProject(projectId) {
 		})
 		.catch(error => {
 			console.log('Une erreur s\'est produite lors de la communication avec l\'API :', error);
-		});
-}
-
-
-
-// Récupérer le formulaire et attacher l'événement de soumission
-const form = document.forms.addImgForm;
-form.addEventListener('submit', function (event) {
-	event.preventDefault(); // Empêcher le comportement par défaut du formulaire
-	validateAndSubmitForm(form);
-});
-
-// Validation de l'ID de catégorie
-function isValidCategoryId(categoryId) {
-	// Vérifier si categoryId est un ID de catégorie valide
-	// Retourner true si valide, false sinon
-	// Implémenter la logique appropriée
-}
-
-// Validation de la taille de l'image
-function isValidImageSize(image) {
-	// Vérifier si la taille de l'image est inférieure à 4 Mo
-	// Retourner true si valide, false sinon
-	// Implémenter la logique appropriée
-}
-
-// Fonction de validation et envoi du formulaire
-function validateAndSubmitForm(form) {
-	const formData = new FormData(form);
-	let errors = [];
-
-	const title = formData.get('title');
-	const category = formData.get('category');
-	const image = formData.get('img');
-
-	if (!title || typeof title !== 'string') {
-		errors.push('Veuillez fournir un titre valide.');
-	}
-
-	if (!category || !isValidCategoryId(category)) {
-		errors.push('Veuillez sélectionner une catégorie valide.');
-	}
-
-	if (!image || !isValidImageSize(image)) {
-		errors.push('Veuillez sélectionner une image valide (taille maximale de 4 Mo).');
-	}
-
-	// Vérifier s'il y a des erreurs
-	if (errors.length > 0) {
-		const errorContainer = document.getElementById('error-container');
-		errorContainer.innerHTML = ''; // Effacer les messages d'erreur précédents
-
-		// Afficher les messages d'erreur
-		errors.forEach(error => {
-			const errorElement = document.createElement('p');
-			errorElement.textContent = error;
-			errorContainer.appendChild(errorElement);
-		});
-
-		return; // Arrêter l'exécution si des erreurs sont présentes
-	}
-
-	// Les données du formulaire sont valides, envoyer le formulaire au backend
-	fetch('http://localhost:5678/api/works', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'multipart/form-data'
-		},
-		body: formData
-	})
-		.then(response => {
-			if (response.ok) {
-				// Le formulaire a été envoyé avec succès
-				const successContainer = document.getElementById('success-container');
-				successContainer.textContent = 'Le formulaire a été envoyé avec succès.';
-				successContainer.style.display = 'block';
-
-				// Recharger les projets depuis l'API pour mettre à jour la galerie
-				loadProjectsFromAPI();
-			} else {
-				// Une erreur s'est produite lors de l'envoi du formulaire
-				const errorContainer = document.getElementById('error-container');
-				errorContainer.textContent = 'Une erreur s\'est produite lors de l\'envoi du formulaire.';
-				errorContainer.style.display = 'block';
-			}
-		})
-		.catch(error => {
-			console.error('Une erreur s\'est produite lors de la communication avec l\'API:', error);
 		});
 }
