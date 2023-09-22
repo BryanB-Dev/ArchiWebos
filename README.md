@@ -26,4 +26,4 @@ Ce projet a pour objectif de dynamiser un site portfolio existant en ajoutant de
 - Charlotte : Chef de projet
 - Juan : Designer
 - Fatima : Développeur back-end
-- [BryanB-Dev](https://github.com/BryanB-Dev) : développeur front-end
+- [BryanB-Dev](https://github.com/BryanB-Dev) : Développeur front-end
