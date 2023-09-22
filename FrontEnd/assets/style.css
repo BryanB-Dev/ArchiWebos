@@ -214,11 +214,6 @@ li a {
 li a:visited {
 	color: black;
 }
-
-.logout-button {
-	display: none;
-}
-
 /****** INTRODUCTION ******/
 #introduction {
 	display: flex;
@@ -403,7 +398,7 @@ footer nav ul {
 
 /****** MODAL ******/
 .edit-mode-overlay {
-	display: none;
+	display: inline-flex;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -420,7 +415,7 @@ footer nav ul {
 }
 
 .edit-button {
-	display: none;
+	display: flex;
 	gap: 10px;
 	position: absolute;
 	top: 9px;
@@ -430,7 +425,6 @@ footer nav ul {
 }
 
 .modal-overlay {
-	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -522,7 +516,7 @@ footer nav ul {
 }
 
 .previous-modal-button {
-	display: none;
+	display: flex;
 	width: 21px;
 	height: 18px;
 	position: absolute;
@@ -556,6 +550,20 @@ footer nav ul {
 .img-upload .imgIcon {
 	font-size: 68px;
 	color: #B9C5CC;
+}
+
+.preview-img {
+	height: 100%;
+}
+
+.error {
+	color: red;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
 }
 
 .btn-upload {
@@ -619,4 +627,8 @@ footer nav ul {
 
 #addImgForm hr {
 	margin: 0px;
+}
+
+.display-none {
+	display: none !important;
 }

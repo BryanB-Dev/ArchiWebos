@@ -124,23 +124,20 @@ if (localStorage.getItem("token")) {
 
 	// Edit Overlay
 	const header = document.querySelector('header');
-	header.style.marginTop = '109px';
-
 	const editOverlay = document.querySelector('.edit-mode-overlay');
-	editOverlay.style.display = "inline-flex";
-
-	// Edit Button
 	const editButton = document.querySelector('.edit-button');
-	editButton.style.display = "flex";
-
 	const modalOverlay = document.querySelector('.modal-overlay');
 	const closeModalButton = document.querySelector('.close-modal-button');
-
-	// Logout Button
 	const logoutButton = document.querySelector('.logout-button');
 	const loginButton = document.querySelector('.login-button');
-	logoutButton.style.display = "block";
-	loginButton.style.display = "none";
+	
+	var show = [editOverlay, editButton, logoutButton];
+	showElement(show);
+
+	var hide = [loginButton];
+	hideElement(hide);
+	
+	header.style.marginTop = '109px';
 
 	logoutButton.addEventListener('click', function () {
 		logoutUser();
@@ -148,18 +145,23 @@ if (localStorage.getItem("token")) {
 
 	// Open/Close Modal
 	editButton.addEventListener('click', function () {
-		modalOverlay.style.display = 'block';
+		var show = [modalOverlay];
+		showElement(show);
 	});
 
 	closeModalButton.addEventListener('click', function () {
-		modalOverlay.style.display = 'none';
+		var hide = [modalOverlay];
+		hideElement(hide);
 		hideUploadPage();
 	});
 
 	modalOverlay.addEventListener('click', function (event) {
 		if (event.target === modalOverlay) {
-			modalOverlay.style.display = 'none';
+			var hide = [modalOverlay]
+			hideElement(hide);
 			hideUploadPage();
+			removePreviewPicture()
+			resetForm();
 		}
 	});
 
@@ -173,6 +175,23 @@ if (localStorage.getItem("token")) {
 
 	previousButton.addEventListener('click', function () {
 		hideUploadPage();
+	});
+
+	// Upload Image
+	const fileInput = document.getElementById('file');
+
+	fileInput.addEventListener('change', (e) => {
+
+		const errorText = document.querySelector('.error');
+		const types = ['image/jpeg', 'image/png'];
+
+		if (!types.includes(e.target.files[0].type)) {
+			errorText.textContent = "Format non autorisé";
+			// alert('Format non autorisé');
+			return;
+		} else {
+			previewPicture(e.target);
+		}
 	});
 
 }

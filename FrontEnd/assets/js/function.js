@@ -1,27 +1,27 @@
 function deleteProject(projectId) {
-	const token = localStorage.getItem("token");
-	const elementDeleted = document.querySelector(`.delete-icon[data-project-id="${projectId}"]`);
-	const portfolioDeleted = document.querySelector(`figure[data-project-id="${projectId}"]`);
-	const galleryDeleted = elementDeleted.parentElement;
+    const token = localStorage.getItem("token");
+    const elementDeleted = document.querySelector(`.delete-icon[data-project-id="${projectId}"]`);
+    const portfolioDeleted = document.querySelector(`figure[data-project-id="${projectId}"]`);
+    const galleryDeleted = elementDeleted.parentElement;
 
-	fetch(`http://localhost:5678/api/works/${projectId}`, {
-		method: 'DELETE',
-		headers: {
-			'Authorization': `Bearer ${token}`
-		}
-	})
-		.then(response => {
-			if (response.ok) {
-				portfolioDeleted.remove();
-				galleryDeleted.remove();
-				console.log(`Le projet avec l'ID ${projectId} a été supprimé.`);
-			} else {
-				console.log(`Une erreur s'est produite lors de la suppression du projet avec l'ID ${projectId}.`);
-			}
-		})
-		.catch(error => {
-			console.log('Une erreur s\'est produite lors de la communication avec l\'API :', error);
-		});
+    fetch(`http://localhost:5678/api/works/${projectId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                portfolioDeleted.remove();
+                galleryDeleted.remove();
+                console.log(`Le projet avec l'ID ${projectId} a été supprimé.`);
+            } else {
+                console.log(`Une erreur s'est produite lors de la suppression du projet avec l'ID ${projectId}.`);
+            }
+        })
+        .catch(error => {
+            console.log('Une erreur s\'est produite lors de la communication avec l\'API :', error);
+        });
 }
 
 function logoutUser() {
@@ -38,22 +38,71 @@ const addImgForm = document.querySelector('#addImgForm');
 const previousButton = document.querySelector('.previous-modal-button');
 
 function displayUploadPage() {
-    modalGalleryTitle.style.display = 'none';
-    modalGallery.style.display = 'none';
-    hrModalGallery.style.display = 'none';
-    nextPage.style.display = 'none';
+    var hide = [modalGalleryTitle, modalGallery, hrModalGallery, nextPage];
+    hideElement(hide);
 
-    modalUploadTitle.style.display = 'block';
-    addImgForm.style.display = 'block';
-    previousButton.style.display = 'flex';
+    var show = [modalUploadTitle, addImgForm, previousButton];
+    showElement(show);
 }
 function hideUploadPage() {
-    modalGalleryTitle.style.display = 'block';
-    modalGallery.style.display = 'grid';
-    hrModalGallery.style.display = 'block';
-    nextPage.style.display = 'inline';
+    var show = [modalGalleryTitle, modalGallery, hrModalGallery, nextPage];
+    showElement(show);
+    
+    var hide = [modalUploadTitle, addImgForm, previousButton];
+    hideElement(hide);
+}
 
-    modalUploadTitle.style.display = 'none';
-    addImgForm.style.display = 'none';
-    previousButton.style.display = 'none';
+function hideElement(elements) {
+    elements.forEach(el => {
+        el.classList.add("display-none");
+    });
+}
+
+function showElement(elements) {
+    elements.forEach(el => {
+        el.classList.remove("display-none");
+    });
+}
+
+function previewPicture(file) {
+    const previewImg = document.getElementById('preview');
+    const btnUpload = document.querySelector('.btn-upload');
+    const uploadText = document.querySelector('.upload-text');
+    const imgIcon = document.querySelector('.imgIcon');
+    const errorText = document.querySelector('.error');
+
+    var hide = [btnUpload, uploadText, imgIcon, errorText];
+    hideElement(hide);
+
+    var show = [previewImg];
+    showElement(show);
+
+    const picture = file.files[0];
+
+    const preview = document.getElementById('preview');
+    preview.src = URL.createObjectURL(picture);
+}
+
+function removePreviewPicture() {
+    const previewImg = document.getElementById('preview');
+    const btnUpload = document.querySelector('.btn-upload');
+    const uploadText = document.querySelector('.upload-text');
+    const imgIcon = document.querySelector('.imgIcon');
+    const errorText = document.querySelector('.error');
+
+    var show = [btnUpload, uploadText, imgIcon, errorText];
+    showElement(show);
+
+    var hide = [previewImg];
+    hideElement(hide);
+
+    errorText.textContent = "";
+
+    const preview = document.getElementById('preview');
+    preview.src = "";
+}
+
+function resetForm() {
+    document.getElementById('addImgForm').reset();
+    removePreviewPicture()
 }

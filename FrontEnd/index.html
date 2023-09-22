@@ -14,8 +14,8 @@
 		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="assets/js/script.js" defer></script>
 	<script src="assets/js/function.js" defer></script>
+	<script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 				</li>
 				<li>
 					<a class="login-button" href="./login.html">login</a>
-					<a class="logout-button">logout</a>
+					<a class="logout-button display-none">logout</a>
 				</li>
 				<li>
 					<img src="./assets/icons/instagram.png" alt="Instagram">
@@ -41,22 +41,24 @@
 	</header>
 	<main>
 		<!-- Modal -->
-		<div class="modal-overlay">
+		<div class="modal-overlay display-none">
 			<div class="modal-content">
 				<i class="close-modal-button fa-solid fa-xmark fa-lg" aria-hidden="true"></i>
 				<h2 class="modal-gallery-title">Galerie photo</h2>
 				<div class="modal-gallery"></div>
-				<i class="previous-modal-button fa-solid fa-arrow-left fa-lg" aria-hidden="true"></i>
-				<h2 class="modal-upload-title" style="display: none;">Ajout photo</h2>
-				<form id="addImgForm" style="display: none;" method="post" name="addImgForm">
+				<i class="previous-modal-button fa-solid fa-arrow-left fa-lg display-none" aria-hidden="true"></i>
+				<h2 class="modal-upload-title display-none">Ajout photo</h2>
+				<form class="display-none" id="addImgForm" method="post" name="addImgForm">
 					<div class="img-form">
 						<div class="img-upload">
 							<i class="imgIcon fa-regular fa-image" aria-hidden="true"></i>
+							<img class="preview-img display-none" id="preview">
 							<div class="btn-upload">
-								<input type="file" name="img" id="">
+								<input type="file" name="img" id="file">
 								+ Ajouter photo
 							</div>
 							<p class="upload-text">jpg, png : 4mo max</p>
+							<p class="error"></p>
 						</div>
 						<label for="title">Titre</label>
 						<input type="text" name="title" id="">
@@ -71,7 +73,7 @@
 				<a id="nextPage" class="modal-img-button">Ajouter une photo</a>
 			</div>
 		</div>
-		<div class="edit-mode-overlay">
+		<div class="edit-mode-overlay display-none">
 			<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
 			<p>Mode édition</p>
 		</div>
@@ -95,7 +97,7 @@
 			<div class="portfolio-text">
 				<h2>Mes Projets</h2>
 				<!-- Modal -->
-				<a class="edit-button">
+				<a class="edit-button display-none">
 					<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
 					<span>modifier</span>
 				</a>
