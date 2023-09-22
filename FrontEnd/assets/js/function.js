@@ -1,7 +1,8 @@
 function deleteProject(projectId) {
 	const token = localStorage.getItem("token");
 	const elementDeleted = document.querySelector(`.delete-icon[data-project-id="${projectId}"]`);
-	const divDeleted = elementDeleted.parentElement;
+	const portfolioDeleted = document.querySelector(`figure[data-project-id="${projectId}"]`);
+	const galleryDeleted = elementDeleted.parentElement;
 
 	fetch(`http://localhost:5678/api/works/${projectId}`, {
 		method: 'DELETE',
@@ -11,7 +12,8 @@ function deleteProject(projectId) {
 	})
 		.then(response => {
 			if (response.ok) {
-				divDeleted.remove();
+				portfolioDeleted.remove();
+				galleryDeleted.remove();
 				console.log(`Le projet avec l'ID ${projectId} a été supprimé.`);
 			} else {
 				console.log(`Une erreur s'est produite lors de la suppression du projet avec l'ID ${projectId}.`);

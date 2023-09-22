@@ -20,6 +20,7 @@ fetch('http://localhost:5678/api/works')
 			const figcaption = document.createElement('figcaption');
 
 			figure.dataset.category = projectCategoryID;
+			figure.dataset.projectId = projectID;
 
 			image.src = projectImageUrl;
 			image.alt = projectTitle;
