@@ -15,6 +15,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="assets/js/script.js" defer></script>
+	<script src="assets/js/function.js" defer></script>
 </head>
 
 <body>
@@ -22,12 +23,19 @@
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li>projets</li>
-				<li>contact</li>
 				<li>
-					<a href="./login.html">login</a>
+					<a href="#portfolio">projets</a>
 				</li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				<li>
+					<a href="#contact">contact</a>
+				</li>
+				<li>
+					<a class="login-button" href="./login.html">login</a>
+					<a class="logout-button">logout</a>
+				</li>
+				<li>
+					<img src="./assets/icons/instagram.png" alt="Instagram">
+				</li>
 			</ul>
 		</nav>
 	</header>
@@ -38,7 +46,6 @@
 				<i class="close-modal-button fa-solid fa-xmark fa-lg" aria-hidden="true"></i>
 				<h2 class="modal-gallery-title">Galerie photo</h2>
 				<div class="modal-gallery"></div>
-				
 				<i class="previous-modal-button fa-solid fa-arrow-left fa-lg" aria-hidden="true"></i>
 				<h2 class="modal-upload-title" style="display: none;">Ajout photo</h2>
 				<form id="addImgForm" style="display: none;" method="post" name="addImgForm">
