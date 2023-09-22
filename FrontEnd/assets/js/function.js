@@ -44,10 +44,11 @@ function displayUploadPage() {
     var show = [modalUploadTitle, addImgForm, previousButton];
     showElement(show);
 }
+
 function hideUploadPage() {
     var show = [modalGalleryTitle, modalGallery, hrModalGallery, nextPage];
     showElement(show);
-    
+
     var hide = [modalUploadTitle, addImgForm, previousButton];
     hideElement(hide);
 }

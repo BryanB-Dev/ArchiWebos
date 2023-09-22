@@ -82,6 +82,12 @@ fetch('http://localhost:5678/api/categories')
 			link.href = '#';
 			link.dataset.category = categoryID;
 
+			const selectUpload = document.querySelector('#category');
+			const option = document.createElement('option');
+			option.value = categoryID;
+			option.textContent = categoryName;
+
+			selectUpload.appendChild(option);
 			filterLinksContainer.appendChild(link);
 		});
 
@@ -130,13 +136,13 @@ if (localStorage.getItem("token")) {
 	const closeModalButton = document.querySelector('.close-modal-button');
 	const logoutButton = document.querySelector('.logout-button');
 	const loginButton = document.querySelector('.login-button');
-	
+
 	var show = [editOverlay, editButton, logoutButton];
 	showElement(show);
 
 	var hide = [loginButton];
 	hideElement(hide);
-	
+
 	header.style.marginTop = '109px';
 
 	logoutButton.addEventListener('click', function () {
@@ -160,7 +166,6 @@ if (localStorage.getItem("token")) {
 			var hide = [modalOverlay]
 			hideElement(hide);
 			hideUploadPage();
-			removePreviewPicture()
 			resetForm();
 		}
 	});
@@ -195,3 +200,83 @@ if (localStorage.getItem("token")) {
 	});
 
 }
+
+const fileInput = document.getElementById('file');
+const titleInput = document.getElementById('title');
+const categorySelect = document.getElementById('category');
+const form = document.querySelector('#addImgForm');
+const token = localStorage.getItem("token");
+
+form.addEventListener('submit', async (e) => {
+	e.preventDefault();
+
+	const formData = new FormData();
+
+	formData.append('image', fileInput.files[0]);
+	formData.append('title', titleInput.value);
+	formData.append('category', categorySelect.value);
+
+	fetch('http://localhost:5678/api/works', {
+
+		method: 'POST',
+		headers: {
+			'Authorization': `Bearer ${token}`
+		},
+		body: formData
+
+	})
+		.then(response => response.json())
+		.then(data => {
+			const portfolioSection = document.getElementById('portfolio');
+			const gallery = portfolioSection.querySelector('.gallery');
+			const modalOverlay = document.querySelector('.modal-overlay');
+			const modalGallery = modalOverlay.querySelector('.modal-gallery');
+			
+			var hide = [modalOverlay]
+			
+			hideElement(hide);
+			hideUploadPage();
+
+			const figure = document.createElement('figure');
+			const image = document.createElement('img');
+			const figcaption = document.createElement('figcaption');
+
+			figure.dataset.category = categorySelect.value;
+
+			image.src = URL.createObjectURL(fileInput.files[0]);
+			image.alt = titleInput.value;
+			figcaption.textContent = titleInput.value;
+
+			figure.appendChild(image);
+			figure.appendChild(figcaption);
+			gallery.appendChild(figure);
+
+			// Modal Gallery
+			const modalGalleryDiv = document.createElement('div');
+			const modalGalleryImg = document.createElement('img');
+			const trashButton = document.createElement('a');
+			const trashIcon = document.createElement('i');
+
+			modalGalleryDiv.style.position = "relative";
+
+			trashButton.classList.add('delete-icon');
+
+			modalGalleryImg.src = URL.createObjectURL(fileInput.files[0]);
+			modalGalleryImg.alt = titleInput.value;
+
+			trashIcon.classList.add('fa-solid', 'fa-trash-can', 'fa-2xs');
+
+			modalGalleryDiv.appendChild(modalGalleryImg);
+			trashButton.appendChild(trashIcon);
+			modalGalleryDiv.appendChild(trashButton);
+			modalGallery.appendChild(modalGalleryDiv)
+
+			console.log(data);
+			resetForm();
+		})
+		.catch(err => {
+			console.error(err);
+		});
+
+});
+
