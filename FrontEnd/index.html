@@ -53,9 +53,10 @@
 					<div class="img-form">
 						<div class="img-upload" id="file">
 							<i class="imgIcon fa-regular fa-image" aria-hidden="true"></i>
-							<img class="preview-img display-none" id="preview">
+							<img src="./assets/icons/instagram.png" alt="Prévisualisation de l'image"
+								class="preview-img display-none" id="preview">
 							<div class="btn-upload">
-								<input type="file" name="img" id="file" required>
+								<input type="file" name="img" required>
 								+ Ajouter photo
 							</div>
 							<p class="upload-text">jpg, png : 4mo max</p>
@@ -65,7 +66,7 @@
 						<input type="text" name="title" id="title" required>
 						<label for="category">Catégorie</label>
 						<select name="category" id="category" required>
-							<option value=""></option>
+							<option value="" label=" "></option>
 						</select>
 						<hr>
 						<input class="modal-img-button disabled" type="submit" value="Envoyer">
@@ -80,10 +81,10 @@
 			<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
 			<p>Mode édition</p>
 		</div>
-		<!-- ----- -->
-		<section id="introduction">
+		<!--  -->
+		<div id="introduction">
 			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
+				<img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -95,7 +96,7 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
 			</article>
-		</section>
+		</div>
 		<section id="portfolio">
 			<div class="portfolio-text">
 				<h2>Mes Projets</h2>
@@ -104,7 +105,7 @@
 					<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
 					<span>modifier</span>
 				</a>
-				<!-- ----- -->
+				<!--  -->
 			</div>
 			<div class="filter-links">
 				<a href="#" class="filter-link active" data-category="all">Tous</a>

@@ -17,7 +17,7 @@ const addImgForm = document.querySelector('#addImgForm');
 const previousButton = document.querySelector('.previous-modal-button');
 
 // Upload Form
-const fileInput = document.querySelector('input#file');
+const fileInput = document.querySelector('.img-upload input[type="file"]');
 const titleInput = document.getElementById('title');
 const categorySelect = document.getElementById('category');
 const token = localStorage.getItem("token");
