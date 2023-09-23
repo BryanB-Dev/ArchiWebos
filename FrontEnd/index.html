@@ -14,8 +14,9 @@
 		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="assets/js/function.js" defer></script>
 	<script src="assets/js/script.js" defer></script>
+	<script src="assets/js/edit.js" defer></script>
+	<script src="assets/js/function.js"></script>
 </head>
 
 <body>
@@ -50,22 +51,24 @@
 				<h2 class="modal-upload-title display-none">Ajout photo</h2>
 				<form class="display-none" id="addImgForm" method="post" name="addImgForm">
 					<div class="img-form">
-						<div class="img-upload">
+						<div class="img-upload" id="file">
 							<i class="imgIcon fa-regular fa-image" aria-hidden="true"></i>
 							<img class="preview-img display-none" id="preview">
 							<div class="btn-upload">
-								<input type="file" name="img" id="file">
+								<input type="file" name="img" id="file" required>
 								+ Ajouter photo
 							</div>
 							<p class="upload-text">jpg, png : 4mo max</p>
 							<p class="error"></p>
 						</div>
 						<label for="title">Titre</label>
-						<input type="text" name="title" id="title">
+						<input type="text" name="title" id="title" required>
 						<label for="category">Catégorie</label>
-						<select name="category" id="category"></select>
+						<select name="category" id="category" required>
+							<option value=""></option>
+						</select>
 						<hr>
-						<input class="modal-img-button" type="submit" value="Envoyer">
+						<input class="modal-img-button disabled" type="submit" value="Envoyer">
 					</div>
 				</form>
 				<hr id="hrModalGallery">

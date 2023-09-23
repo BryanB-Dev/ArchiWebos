@@ -573,6 +573,15 @@ footer nav ul {
 	line-height: normal;
 }
 
+.error-input {
+	border: 2px solid red !important;
+}
+
+.error-message {
+	color: red;
+	margin-top: 4px;
+  }
+
 .btn-upload {
 	width: auto !important;
 	border-radius: 50px;
@@ -615,10 +624,6 @@ footer nav ul {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-.img-form select {
-	margin-bottom: 47px;
-}
-
 .img-form hr {
 	display: block;
 	height: 1px;
@@ -634,8 +639,14 @@ footer nav ul {
 
 #addImgForm hr {
 	margin: 0px;
+	margin-top: 47px;
 }
 
 .display-none {
 	display: none !important;
+}
+
+.disabled {
+	color: white !important;
+	background-color: #A7A7A7 !important;
 }
