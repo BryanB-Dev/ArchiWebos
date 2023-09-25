@@ -114,7 +114,7 @@ function resetForm() {
 }
 
 // Show Form Error
-function showValidationError(inputElement, text = 'Ce champ doit être rempli') {
+function showValidationError(inputElement, submit = true, text = 'Ce champ doit être rempli') {
     const errorElement = inputElement.parentNode.querySelector(`.error-message[data-input="${inputElement.id}"]`);
     if (errorElement) {
         return;
@@ -127,17 +127,21 @@ function showValidationError(inputElement, text = 'Ce champ doit être rempli') 
     errorMessage.textContent = text;
     errorMessage.dataset.input = inputElement.id;
     inputElement.parentNode.insertBefore(errorMessage, inputElement.nextSibling);
-    disableSubmit();
+    if (submit) {
+        disableSubmit();
+    }
 }
 
 // Hide Form Error
-function hideValidationError(inputElement) {
+function hideValidationError(inputElement, submit = true) {
     inputElement.classList.remove('error-input');
     const errorElement = inputElement.parentNode.querySelector(`.error-message[data-input="${inputElement.id}"]`);
     if (errorElement) {
         errorElement.parentNode.removeChild(errorElement);
     }
-    disableSubmit();
+    if (submit) {
+        disableSubmit();
+    }
 }
 
 // Disable/Enable Submit
@@ -153,27 +157,24 @@ function disableSubmit() {
     }
 }
 
-function checkFormValidity() {
-    const isTitleValid = titleInput.value.trim() !== '';
-    const isCategoryValid = categorySelect.value !== '';
-    const isFileValid = fileInput.value !== '';
+function checkFormValidity(elements, param = true) {
 
-    if (!isTitleValid) {
-        showValidationError(titleInput);
-    } else {
-        hideValidationError(titleInput);
+    elements.forEach(el => {
+        if(el.value.trim() === '') {
+            if(el.id==='') {
+                el = el.parentElement.parentElement;
+            }
+            showValidationError(el, param);
+        } else {
+            hideValidationError(el, param);
+        }
+    });
+    if (param) {
+        disableSubmit();
     }
+}
 
-    if (!isCategoryValid) {
-        showValidationError(categorySelect);
-    } else {
-        hideValidationError(categorySelect);
-    }
-
-    if (!isFileValid) {
-        showValidationError(fileInputDiv);
-    } else {
-        hideValidationError(fileInputDiv);
-    }
-    disableSubmit();
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }

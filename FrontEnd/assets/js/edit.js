@@ -89,7 +89,7 @@ if (localStorage.getItem("token")) {
 
             fileInput.value = '';
 
-            showValidationError(fileInputDiv, errorText);
+            showValidationError(fileInputDiv, true, errorText);
             return;
         } else if (fileInput.value === '') {
             showValidationError(fileInputDiv);
@@ -116,7 +116,7 @@ if (localStorage.getItem("token")) {
     });
 
     submitButton.addEventListener('click', async (e) => {
-        checkFormValidity();
+        checkFormValidity([fileInput, titleInput, categorySelect]);
 
         if (!submitButton.classList.contains('disabled')) {
 
