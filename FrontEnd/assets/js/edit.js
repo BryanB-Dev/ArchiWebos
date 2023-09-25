@@ -82,14 +82,20 @@ if (localStorage.getItem("token")) {
 
         const types = ['image/jpeg', 'image/png'];
 
+        hideValidationError(fileInputDiv);
+
         if (!types.includes(e.target.files[0].type)) {
             const errorText = "Format non autorisé";
-            showValidationError(fileInput, errorText);
-            // alert('Format non autorisé');
+
+            fileInput.value = '';
+
+            showValidationError(fileInputDiv, errorText);
             return;
+        } else if (fileInput.value === '') {
+            showValidationError(fileInputDiv);
         } else {
             previewPicture(e.target);
-            hideValidationError(fileInput);
+            hideValidationError(fileInputDiv);
         }
     });
 
@@ -106,14 +112,6 @@ if (localStorage.getItem("token")) {
             showValidationError(categorySelect);
         } else {
             hideValidationError(categorySelect);
-        }
-    });
-
-    fileInput.addEventListener('change', function () {
-        if (fileInput.value === '') {
-            showValidationError(fileInputDiv);
-        } else {
-            hideValidationError(fileInputDiv);
         }
     });
 
