@@ -12,7 +12,7 @@ Ce projet a pour objectif de dynamiser un site portfolio existant en ajoutant de
 - CSS 
 - JavaScript
 - Node.js
-- API
+- API Express
 
 ## Fonctionnalités
 
@@ -25,5 +25,5 @@ Ce projet a pour objectif de dynamiser un site portfolio existant en ajoutant de
 
 - Charlotte : Chef de projet
 - Juan : Designer
-- Fatima : Développeur back-end
+- Fatima : Développeuse back-end
 - [BryanB-Dev](https://github.com/BryanB-Dev) : Développeur front-end
