@@ -157,23 +157,41 @@ function disableSubmit() {
     }
 }
 
-function checkFormValidity(elements, param = true) {
+// Check Form Validity
+function checkFormValidity(elements) {
 
     elements.forEach(el => {
         if(el.value.trim() === '') {
             if(el.id==='') {
                 el = el.parentElement.parentElement;
             }
-            showValidationError(el, param);
+            showValidationError(el);
         } else {
-            hideValidationError(el, param);
+            hideValidationError(el);
         }
     });
-    if (param) {
-        disableSubmit();
+    disableSubmit();
+}
+
+// Check Login Form Validity
+function checkLoginFormValidity(email, password) {
+
+    if (email.value.trim() === '') {
+        showValidationError(email, false);
+    } else if (!validateEmail(email.value.trim())) {
+        showValidationError(email, false, 'Format incorrect');
+    } else {
+        hideValidationError(email, false);
+    }
+
+    if (password.value === '') {
+        showValidationError(password, false);
+    } else {
+        hideValidationError(password, false);
     }
 }
 
+// Check Email Format
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
