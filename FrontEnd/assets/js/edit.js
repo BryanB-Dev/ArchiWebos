@@ -143,7 +143,7 @@ if (localStorage.getItem("token")) {
                     const modalOverlay = document.querySelector('.modal-overlay');
                     const modalGallery = modalOverlay.querySelector('.modal-gallery');
 
-                    var hide = [modalOverlay, modalGalleryTitle, modalGallery, hrModalGallery, nextPage];
+                    var hide = [modalOverlay, modalGalleryTitle, modalGallery, hrModalGallery, nextPage, modalUploadTitle, addImgForm, previousButton];
                     hideElement(hide);
 
                     const figure = document.createElement('figure');
@@ -151,6 +151,7 @@ if (localStorage.getItem("token")) {
                     const figcaption = document.createElement('figcaption');
 
                     figure.dataset.category = categorySelect.value;
+                    figure.dataset.projectId = data.id;
 
                     image.src = URL.createObjectURL(fileInput.files[0]);
                     image.alt = titleInput.value;
@@ -169,6 +170,7 @@ if (localStorage.getItem("token")) {
                     modalGalleryDiv.style.position = "relative";
 
                     trashButton.classList.add('delete-icon');
+                    trashButton.dataset.projectId = data.id;
 
                     modalGalleryImg.src = URL.createObjectURL(fileInput.files[0]);
                     modalGalleryImg.alt = titleInput.value;
@@ -179,6 +181,12 @@ if (localStorage.getItem("token")) {
                     trashButton.appendChild(trashIcon);
                     modalGalleryDiv.appendChild(trashButton);
                     modalGallery.appendChild(modalGalleryDiv)
+
+                    trashButton.addEventListener('click', () => {
+                        const projectId = trashButton.dataset.projectId;
+        
+                        deleteProject(projectId);
+                    });
 
                     console.log(data);
                     resetForm();
